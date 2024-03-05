@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Antonio Cadavid</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <h1>Antonio Cadavid Bitácora de programación</h1>
+    <nav>
+      <br />
+      <ul>
+        <li style="font-weight:bold;font-size: 16px;text-decoration: underline;"><a
+            href="https://github.com/cadavincito">GitHub</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <h2>Mountains</h2>
+      <img src="montania.PNG">
+      <br>
+      <br>
+      <h2>Script</h2>
+      <pre> <code style="color: green;">
+            let colores = ['rgb(150,235,240)','rgb(18,209,140)','rgb(247,184,44)',  'yellow','rgb(212,133,198)']
+
+function setup() {
+  createCanvas(400, 400);
+  noLoop()
+  colorMode(HSB)
+  drawingContext.shadowBlur=100
+}
+
+function draw() {
+  background(220);
+  
+  noStroke()
+  drawingContext.shadowColor = 'orange'
+  fill('orange')
+  circle(100,20,100)
+  dibujarMontana()
+}
+
+function dibujarMontana(c){
+  
+
+  
+  
+  beginShape();
+  vertex(0,height)
+  
+  let b = random(0,100)
+  
+  
+  let saturacion = 0;
+  let brillo = 100;
+  
+  noStroke()
+  
+  for (let y = 70; y < height; y = y +10){
+    
+    
+    let h = 180;
+    fill(h,saturacion,brillo);
+    h = h+5
+    saturacion=saturacion+3
+    brillo = brillo-2;
+    
+    beginShape();
+  vertex(0,height)
+  
+  let b = random(0,100)
+  
+    for (let x = 0; x< width; x = x + 1){
+    let ym = noise(x / 100,b) * 100 + y;
+    vertex(x,ym)
+    }
+   
+  vertex(width,height)
+  endShape()
+  
+  }
+}
+          </code>
+        </pre>
+    </section>
+
+    <!-- el otro  -->
+
+    <section>
+      <h2 style="color: rgb(255, 0, 153);">Shapes</h2>
+      <img src="shapes.PNG">
+      <br>
+      <br>
+      <h2 style="color: rgb(255, 0, 153);">Script</h2>
+      <pre> <code style="color: rgb(255, 0, 153);">
+        let particulas;
+        let colors = ['red','orange','yellow','blue','purple','pink','green','violet']
+        
+        function setup() {
+          createCanvas(400, 400);
+          particulas = [];
+          
+          /*
+          for (let i = 0; i < 1000; i++){
+            let p = new Particula();
+            particulas.push(p);
+          }*/
+          
+        }
+        
+        function draw() {
+          background('black');
+          particulas.forEach(moverYmostrar);
+          /*
+          for (let i = 0; i < 100; i++){
+          particulas[i].mover();
+          particulas[i].mostrar();
+            }
+            */
+        }
+        
+        
+        function mousePressed(){
+          let p = new Particula();
+          particulas.push(p);
+        }
+        
+        function mouseDragged(){
+          let p = new Particula();
+          particulas.push(p);
+        }
+        
+        function moverYmostrar(p){
+          p.mover();
+          p.mostrar();
+        }
+        
+        class Particula {
+          constructor(){
+            this.x = mouseX;
+            this.y = mouseY;
+            this.vx = random(-5,5);
+            this.vy = random(-5,5);
+            this.size = random(20,50);
+            this.color = random(colors);
+            this.forma = 'circulo';
+          }
+          mover(){
+            this.x = this.x + this.vx;
+            this.y = this.y + this.vy
+            
+            if (this.x>=width){
+              this.vx = this.vx * -1;
+              this.forma = 'cuadrado'
+            }
+            
+            if (this.x<=0){
+              this.vx = this.vx * -1;
+              this.forma = 'triangulo'
+            }
+            
+            if (this.y>=height){
+              this.vy = this.vy * -1;
+              this.forma = 'circulo'
+            }
+            
+            if (this.y<=0){
+              this.vy = this.vy * -1;
+              this.forma = 'circulo'
+            } 
+            
+          }
+          mostrar(){
+            noStroke();
+            fill(this.color)
+            
+            if (this.forma=='circulo'){
+              circle(this.x,this.y,this.size);
+            }
+            if (this.forma == 'cuadrado'){
+              square(this.x,this.y,this.size);
+            }
+            if (this.forma == 'triangulo'){
+              triangle(this.x+this.size/2, this.y + this.size/2, this.x - this.size / 2, this.y + this.size/2,this.x,this.y-this.size/2);
+            }
+          }
+        }
+          </code>
+        </pre>
+    </section>
+
+    <!-- kandi -->
+
+     <!-- el otro  -->
+
+     <section>
+      <h2 style="color: rgb(255, 255, 0);">Kandinsky</h2>
+      <img src="kandi.PNG">
+      <br>
+      <br>
+      <h2 style="color: rgb(255, 255, 0);">Script</h2>
+      <pre> <code style="color: rgb(255, 255, 0);">
+        function setup() {
+          createCanvas(400, 400);
+          background(0); // Set background color to black
+          noStroke();
+          drawKandinsky();
+      }
+      
+      function drawKandinsky() {
+          let colors = ['#FF5733', '#33FF57', '#FFFFFF', '#FF57F7', '#FFF333', '#FF0020'];
+          let shapes = ['circle', 'triangle'];
+          let x, y, size;
+          let numShapes = 20;
+      
+          for (let i = 0; i < numShapes; i++) {
+              let shape = random(shapes);
+              x = random(width);
+              y = random(height);
+              size = random(40, 100);
+      
+              fill(random(colors));
+              if (shape === 'circle') {
+                  ellipse(x, y, size, size);
+              } else if (shape === 'triangle') {
+                  let x2 = x + random(-200, 200);
+                  let y2 = y + random(-200, 200);
+                  let x3 = x + random(-200, 200);
+                  let y3 = y + random(-200, 200);
+                  triangle(x, y, x2, y2, x3, y3);
+              }
+          }
+      }
+          </code>
+        </pre>
+    </section>
+    <br />
+
+  </main>
+  <footer>
+    <p style="color:lime">Coded with
+    <p style="color:red;font-size: 24px;">&#10084;
+    <p style="color: lime;"> by Cadavinci</p>
+    <p>:)</p>
+  </footer>
+</body>
+
+</html>
