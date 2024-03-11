@@ -21,14 +21,13 @@
   </header>
   <main>
     <section>
-      <h2>Mountains</h2>
+      <h2 style="color: rgb(26, 17, 182);">Trippy Mountains</h2>
       <img src="montania.PNG">
       <br>
       <br>
-      <h2>Script</h2>
-      <pre> <code style="color: green;">
-            let colores = ['rgb(150,235,240)','rgb(18,209,140)','rgb(247,184,44)',  'yellow','rgb(212,133,198)']
-
+      
+      <pre> <code style="color: rgb(26, 17, 182);">
+        
 function setup() {
   createCanvas(400, 400);
   noLoop()
@@ -40,9 +39,9 @@ function draw() {
   background(220);
   
   noStroke()
-  drawingContext.shadowColor = 'orange'
-  fill('orange')
-  circle(100,20,100)
+  drawingContext.shadowColor = 'rgb(46,64,148)'
+  fill('rgba(40,14,214,0.82)')
+  circle(100,60,200)
   dibujarMontana()
 }
 
@@ -54,7 +53,7 @@ function dibujarMontana(c){
   beginShape();
   vertex(0,height)
   
-  let b = random(0,100)
+  let b = random(0,50)
   
   
   let saturacion = 0;
@@ -93,7 +92,7 @@ function dibujarMontana(c){
     <!-- el otro  -->
 
     <section>
-      <h2 style="color: rgb(255, 0, 153);">Shapes</h2>
+      <h2 style="color: rgb(255, 0, 153);">Random Shapes</h2>
       <img src="shapes.PNG">
       <br>
       <br>
@@ -200,7 +199,7 @@ function dibujarMontana(c){
      <!-- el otro  -->
 
      <section>
-      <h2 style="color: rgb(255, 255, 0);">Kandinsky</h2>
+      <h2 style="color: rgb(255, 255, 0);">Kandinsky pro</h2>
       <img src="kandi.PNG">
       <br>
       <br>
