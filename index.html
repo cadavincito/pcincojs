@@ -96,7 +96,7 @@ function dibujarMontana(c){
       <img src="shapes.PNG">
       <br>
       <br>
-      <h2 style="color: rgb(255, 0, 153);">Script</h2>
+     
       <pre> <code style="color: rgb(255, 0, 153);">
         let particulas;
         let colors = ['red','orange','yellow','blue','purple','pink','green','violet']
@@ -199,11 +199,87 @@ function dibujarMontana(c){
      <!-- el otro  -->
 
      <section>
+      <h2 style="color: rgb(0, 255, 251);">Pop up Particles</h2>
+      <img src="particulas.PNG">
+      <br>
+      <br>
+     
+      <pre> <code style="color: rgb(0, 255, 251);">
+        let colores = ['#f70640', '#f78e2c', '#fdd903', '#63be93', '#ffffff', '#299dbf', '#f654a9']
+
+let particulas = []
+
+function setup() {
+  createCanvas(400, 400);
+  
+  x1 = random(0, width)
+  y1 = random(0, height)
+  
+  for (let i = 0; i < 100; i++) {
+    let p = new Particula()
+    particulas.push(p)
+    drawingContext.shadowBlur = 30
+  }
+}
+
+function draw() {
+  background(0);
+  
+  particulas.forEach(mostrarYmoverParticulas)
+}
+
+function mostrarYmoverParticulas(p) {
+  p.dibujar()
+  p.mover()
+}
+
+class Particula {
+  constructor(){
+    this.x = random(width)
+    this.y = random(height)
+    this.vx = random(-2,2)
+    this.vy = random(-2, 2)
+    this.col = random(colores)
+    this.s = random(10,60)
+    this.startTime= random(0, 200)
+  }
+  dibujar() {
+    fill(this.col)
+    drawingContext.shadowColor = this.col
+    strokeWeight(2)
+    circle(this.x, this.y, this.s * sin(( frameCount + this.startTime) *0.01))
+  }
+  mover(){
+    this.x = this.x + this.vx
+    this.y = this.y + this.vy
+    
+  if (this.x > width) {
+    this.x = 0
+  } 
+  if (this.x < 0) {
+    this.x = width
+    
+    if (this.y > width) {
+    this.y = 0
+  } 
+  if (this.y < 0) {
+    this.y = width
+  }
+    
+  }
+}
+   }
+          </code>
+        </pre>
+    </section>
+
+
+    <section>
       <h2 style="color: rgb(255, 255, 0);">Kandinsky pro</h2>
       <img src="kandi.PNG">
       <br>
       <br>
-      <h2 style="color: rgb(255, 255, 0);">Script</h2>
+     
       <pre> <code style="color: rgb(255, 255, 0);">
         function setup() {
           createCanvas(400, 400);
@@ -236,6 +312,73 @@ function dibujarMontana(c){
               }
           }
       }
+          </code>
+        </pre>
+    </section>
+
+    <section>
+      <h2 style="color: rgb(255, 98, 0);">Bouncing Balls</h2>
+      <img src="bolas.PNG">
+      <br>
+      <br>
+     
+      <pre> <code style="color: rgb(255, 98, 0);">
+        let balls = [];
+
+        function setup() {
+          createCanvas(600, 400);
+          createBalls();
+        }
+        
+        function draw() {
+          
+          background(0);
+        
+          for (let ball of balls) {
+            ball.move();
+            ball.displayBall();
+            ball.checkEdge();
+          }
+        }
+        
+        function createBalls(){
+            
+          for (let i = 0; i < 100; i++) {
+            let ball = new Ball(random(width), random(height), random(10, 30), color(random(255), random(255), random(255)));
+            balls.push(ball);
+          }
+        }
+        
+        class Ball {
+          constructor(x, y, diameter, col) {
+            this.x = x;
+            this.y = y;
+            this.diameter = diameter;
+            this.col = col;
+            this.xSpeed = random(-2, 2);
+            this.ySpeed = random(-2, 2);
+          }
+        
+          move() {
+            this.x += this.xSpeed;
+            this.y += this.ySpeed;
+          }
+        
+          displayBall() {
+            fill(this.col);
+            ellipse(this.x, this.y, this.diameter, this.diameter);
+          }
+        
+          checkEdge() {
+            if (this.x < 0 || this.x > width) {
+              this.xSpeed *= -1;
+            }
+            if (this.y < 0 || this.y > height) {
+              this.ySpeed *= -1;
+            }
+          }
+        }
+        
           </code>
         </pre>
     </section>
